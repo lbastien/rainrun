@@ -1,4 +1,3 @@
-
 var xPositions = [];
 var yPositions = [];
 var colorArray = [];
@@ -34,3 +33,16 @@ mouseClicked = function() //if the mouse is clicked...
         }; //close of inner draw function
     }; //close of mouse clicked function
 }; //close of outer draw function
+
+
+
+
+
+
+
+
+
+
+
+
+
