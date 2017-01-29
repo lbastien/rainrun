@@ -1,4 +1,5 @@
 
+
 var xPositions = [];
 var yPositions = [];
 var colorArray = [];
@@ -34,12 +35,15 @@ draw = function() //set up the starting page
                     noStroke();
                     fill(colorArray[i]);
                     ellipse(xPositions[i], yPositions[i], 10, 10);
-                    yPositions[i] += 1;
+                    yPositions[i] += 2;
                     if (yPositions[0] > 400) 
                         {
+                        var delay = random(-300, 0);
+                            
                         xPositions.push(random(0,400));
-                        yPositions.push(0);
+                        yPositions.push(delay);
                         colorArray.push(color(random(0, 255), random(0, 255), random(0, 255)));
+                        
                         }
                     if (yPositions[i] > 400) 
                         {
