@@ -25,13 +25,16 @@ draw = function() //set up the starting page
             xPositions.push(random(0,400));
             yPositions.push(0);
             colorArray.push(color(random(0, 255), random(0, 255), random(0, 255)));
-            
+    
             draw = function() //...then start the game
                 {
+                    
                 background(204, 247, 255); //background blue 
                 for (var i = 0; i < xPositions.length; i++) //make the dots fall
                     {
                     noStroke();
+                    fill(255, 0, 0);
+                    rect(75, 370, 30, 30);
                     fill(colorArray[i]);
                     ellipse(xPositions[i], yPositions[i], 10, 10);
                     yPositions[i] += 2;
@@ -49,7 +52,7 @@ draw = function() //set up the starting page
                         yPositions[i] = 0;
                         xPositions[i] = random(0, 400);
                         }               
-                }
+                }//close of for loop
             }; //close of inner draw function
         }; //close of mouse clicked function
     }; //close of outer draw function
