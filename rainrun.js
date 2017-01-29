@@ -1,5 +1,4 @@
 
-
 var xPositions = [];
 var yPositions = [];
 var colorArray = [];
@@ -38,7 +37,7 @@ draw = function() //set up the starting page
                     yPositions[i] += 2;
                     if (yPositions[0] > 400) 
                         {
-                        var delay = random(-300, 0);
+                        var delay = random(-400, 0);
                             
                         xPositions.push(random(0,400));
                         yPositions.push(delay);
@@ -48,6 +47,7 @@ draw = function() //set up the starting page
                     if (yPositions[i] > 400) 
                         {
                         yPositions[i] = 0;
+                        xPositions[i] = random(0, 400);
                         }               
                 }
             }; //close of inner draw function
