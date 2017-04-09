@@ -3,7 +3,9 @@ var xPositions = [];
 var yPositions = [];
 var colorArray = [];
 var squareX = random(0, 400);
+var score = 0;
 var lives = 3;
+var squareSize = 30;
 
 draw = function() //set up the starting page
     {
@@ -19,7 +21,7 @@ draw = function() //set up the starting page
     text("Or here.", 175, 275);
     text("Or here.", 300, 300);
     text("I wouldn't care." , 100, 325);
-    text("Just click SOMEWHERE, 'cause I'm getting impatient.", 25, 350);
+    text("Just click SOMEWHERE, 'cause I'm getting tired.", 25, 350);
     text("Still here? Well, MOVE IT!", 150, 375);
     mouseClicked = function() //if the mouse is clicked...
         {
@@ -34,8 +36,8 @@ draw = function() //set up the starting page
                 for (var i = 0; i < xPositions.length; i++) //make the dots fall
                     {
                     noStroke();
-                    fill(255, 0, 0);
-                    rect(squareX, 370, 30, 30);
+                    fill(255, 0, 238);
+                    rect(squareX, (400 - squareSize), squareSize, squareSize);
                     fill(colorArray[i]);
                     ellipse(xPositions[i], yPositions[i], 10, 10);
                     yPositions[i] += 2;
@@ -46,29 +48,41 @@ draw = function() //set up the starting page
                         xPositions.push(random(0,400));
                         yPositions.push(delay);
                         colorArray.push(color(random(0, 255), random(0, 255), random(0, 255)));
-                        
+
+
                         }
                     if (yPositions[i] > 400) //make dots loop to top
                         {
                         yPositions[i] = 0;
                         xPositions[i] = random(0, 400);
                         }  
+                    //display score and lives    
+                    fill(0, 0, 0);
+                    text("Score:", 10, 20);
+                    text(xPositions.length, 60, 20);
+                    text("Lives: " + lives, 10, 35);
+                    
+                    //if there is a collision...
+                    if(xPositions[i] >= squareX && xPositions[i] <= (squareX + squareSize) && yPositions[i] >= (400-squareSize))
+                        {
+                    
+                        lives -= 1;
+                        yPositions[i] = 0;
+                        xPositions[i] = random(0, 400);
+                        }
                         
+                    //if you lose all your lives...
+                    if(lives <= 0){
+                        background(255, 0, 0);
                         fill(0, 0, 0);
-                        text("Score:", 10, 20);
-                        text(xPositions.length, 60, 20);
-                        text("Lives: " + lives, 10, 35);
-                        if(xPositions[i] >= squareX && xPositions[i] <= (squareX + 30) && yPositions[i] >= 370){
-                                
-                                fill(0, 0, 0);
-                                ellipse(100, 100, 200, 200);
-                                lives -= 1;
-                                yPositions[i] = 0;
-                                xPositions[i] = random(0, 400);
-                            }//if there is a collision...
-                            if(lives === 0){
-                                
-                            }
+                        textSize(75);
+                        text("YOU DIED!", 5, 200);
+                        textSize(20);
+                        text("Click restart to, well, restart.", 100, 250);
+                    }
+                    if(xPositions.length >= 25){
+                        squareSize = 20;
+                    }
                     
                     }//close of for loop
                 if(keyIsPressed && keyCode === LEFT) {
@@ -77,8 +91,8 @@ draw = function() //set up the starting page
                 if(keyIsPressed && keyCode === RIGHT) {
                         squareX += 2;
                     }//move right    
-                if(squareX >= 370){
-                    squareX = 370;
+                if(squareX >= (400 - squareSize)){
+                    squareX = (400 - squareSize);
                     }
                 if(squareX <= 0){
                     squareX = 0;
