@@ -48,8 +48,6 @@ draw = function() //set up the starting page
                         xPositions.push(random(0,400));
                         yPositions.push(delay);
                         colorArray.push(color(random(0, 255), random(0, 255), random(0, 255)));
-
-
                         }
                     if (yPositions[i] > 400) //make dots loop to top
                         {
@@ -80,9 +78,7 @@ draw = function() //set up the starting page
                         textSize(20);
                         text("Click restart to, well, restart.", 100, 250);
                     }
-                    if(xPositions.length >= 25){
-                        squareSize = 20;
-                    }
+                    
                     
                     }//close of for loop
                 if(keyIsPressed && keyCode === LEFT) {
