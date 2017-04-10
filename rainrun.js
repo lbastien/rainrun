@@ -39,6 +39,10 @@ draw = function() //set up the starting page
                     noStroke();
                     fill(255, 0, 238);
                     rect(squareX, (400 - squareSize), squareSize, squareSize);
+                    fill(0, 0, 255);
+                    ellipse((squareX + squareSize/4), (400 - (squareSize - 7.5)), squareSize/4, squareSize/4);//left eye
+                    ellipse((squareX + (squareSize - squareSize/4)), (400 - (squareSize - 7.5)), squareSize/4, squareSize/4);//right eye
+                    ellipse((squareX + squareSize/2), (400 - (squareSize*1/3)), (squareSize/1.25), (squareSize/4));//mouth
                     fill(colorArray[i]);
                     ellipse(xPositions[i], yPositions[i], 10, 10);
                     yPositions[i] += 2;
@@ -71,6 +75,7 @@ draw = function() //set up the starting page
                         }
                         
                     //if you lose all your lives...
+                    
                     if(lives <= 0){
                         makeNewDot = false;
                         background(255, 0, 0);
@@ -81,8 +86,12 @@ draw = function() //set up the starting page
                         text("Click restart to, well, restart.", 100, 250);
                         text("Your score is " + xPositions.length, 100, 275);
                     }
-                    if(xPositions.length === 30){
+                    
+                    if(xPositions.length >= 30 && xPositions.length < 45){
                         squareSize = 20;    
+                    }
+                    if(xPositions.length >= 45){
+                        squareSize = 10;    
                     }
                     
                     }//close of for loop
