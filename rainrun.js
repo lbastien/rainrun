@@ -6,6 +6,7 @@ var squareX = random(0, 400);
 var score = 0;
 var lives = 3;
 var squareSize = 30;
+var makeNewDot = true;
 
 draw = function() //set up the starting page
     {
@@ -41,7 +42,7 @@ draw = function() //set up the starting page
                     fill(colorArray[i]);
                     ellipse(xPositions[i], yPositions[i], 10, 10);
                     yPositions[i] += 2;
-                    if (yPositions[0] > 400) //spawn new dots
+                    if (yPositions[0] > 400 && makeNewDot) //spawn new dots
                         {
                         var delay = random(-400, 0);
                             
@@ -61,7 +62,7 @@ draw = function() //set up the starting page
                     text("Lives: " + lives, 10, 35);
                     
                     //if there is a collision...
-                    if(xPositions[i] >= squareX && xPositions[i] <= (squareX + squareSize) && yPositions[i] >= (400-squareSize))
+                    if((xPositions[i] + 5) >= squareX && (xPositions[i] - 5) <= (squareX + squareSize) && yPositions[i] >= (400-squareSize))
                         {
                     
                         lives -= 1;
@@ -71,14 +72,18 @@ draw = function() //set up the starting page
                         
                     //if you lose all your lives...
                     if(lives <= 0){
+                        makeNewDot = false;
                         background(255, 0, 0);
                         fill(0, 0, 0);
                         textSize(75);
                         text("YOU DIED!", 5, 200);
                         textSize(20);
                         text("Click restart to, well, restart.", 100, 250);
+                        text("Your score is " + xPositions.length, 100, 275);
                     }
-                    
+                    if(xPositions.length === 30){
+                        squareSize = 20;    
+                    }
                     
                     }//close of for loop
                 if(keyIsPressed && keyCode === LEFT) {
